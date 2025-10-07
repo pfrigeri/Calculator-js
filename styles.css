@@ -1,0 +1,36 @@
+#calc-container{
+    display: flex;
+    flex-direction: column;
+
+    background-color: lightpink;
+    height: 700px;
+    width: 500px;
+    margin: 30px auto;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.display{
+    background-color: aqua;
+    width: 500px;
+    height: 100px;
+}
+
+#btn-container{
+    margin-top: 8px;
+    border: 2px solid white;
+    height: 600px;
+}
+
+.numbers{
+    display: flex;
+    flex-wrap: wrap;  
+    height: 600px;
+    justify-content:space-around;
+}
+
+.buttons{
+    flex: 1 1 33.33%;
+    font-size: 24px;
+    border-radius: 0;
+}
