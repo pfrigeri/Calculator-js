@@ -11,26 +11,49 @@
 }
 
 .display{
+    box-sizing: border-box;
     background-color: aqua;
     width: 500px;
     height: 100px;
+    padding: 20px;
 }
 
 #btn-container{
-    margin-top: 8px;
     border: 2px solid white;
     height: 600px;
+    display: flex;
 }
+
 
 .numbers{
     display: flex;
-    flex-wrap: wrap;  
-    height: 600px;
-    justify-content:space-around;
+    flex: 2 1 auto;
+    flex-wrap: wrap;
+}
+
+.operators{
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
 }
 
 .buttons{
     flex: 1 1 33.33%;
     font-size: 24px;
     border-radius: 0;
+}
+
+#dot{
+    flex: 1 2 0;
+}
+
+#zero{
+    flex: 2 1 auto;
+}
+
+#clear{
+    margin: 8px 0;
+    align-self:flex-start;
+    flex: 3 1 10%;
+    width: 150px;
 }
