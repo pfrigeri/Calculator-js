@@ -8,17 +8,17 @@ const subtract = (num1, num2) => {
 }
 
 const multiply = (num1, num2) => {
-    if(num1 == 0 || num2 == 0){
+    if (num1 == 0 || num2 == 0) {
         return 0;
     }
     return num1 * num2;
 }
 
 const divide = (num1, num2) => {
-    if(num1 == 0 && num2 == 0) return "Undefined"; 
-    else if(num1 == 0 && num2 != 0) return 0;
-    else if(num1 != 0 && num2 == 0) return Infinity;
-    
+    if (num1 == 0 && num2 == 0) return "Undefined";
+    else if (num1 == 0 && num2 != 0) return 0;
+    else if (num1 != 0 && num2 == 0) return Infinity;
+
     return num1 / num2;
 }
 
@@ -27,23 +27,18 @@ let number1 = 0;
 let operator = '';
 let number2 = 0;
 
-const operate = (operator, num1, num2) => {
-    switch(operator){
+const operate = (op, num1, num2) => {
+    switch (op) {
         case '+':
-            add(num1,num2);
-            break;
+            return add(num1, num2);
         case '-':
-            subtract(num1,num2);
-            break;
-        case '*' || "x":
-            multiply(num1,num2);
-            break;
+            return subtract(num1, num2);
+        case "x":
+            return multiply(num1, num2);
         case '/':
-            divide(num1,num2);
-            break;
+            return divide(num1, num2);
         default:
             alert("Choose a valid operator !")
-            break;
     }
 }
 
@@ -57,37 +52,65 @@ let displayValue = 0;
 displayText.textContent = displayValue;
 
 const appendNumber = (number) => {
-    if(displayValue == '0'){
+    if (displayValue == '0') {
         displayValue = number;
     } else {
         displayValue += number;
     }
-    displayText.textContent = displayValue;
+
+    if (operator != '') {
+        displayText.textContent = `${number1} ${operator} ${displayValue}`
+    } else {
+        displayText.textContent = displayValue;
+    }
 }
 
 const numberButtons = document.querySelectorAll('.numbers .buttons');
 const operatorButtons = document.querySelectorAll('.operators .buttons')
+const clearBtn = document.querySelector('#clear')
 
 //negative numbers use case
 //make the text start from the right and get pushed left as it's added
 
-numberButtons.forEach( btn => btn.addEventListener('click', () => {
+numberButtons.forEach(btn => btn.addEventListener('click', () => {
     appendNumber(btn.textContent);
 }))
 
-operatorButtons.forEach( btn => btn.addEventListener('click', () => {
-    if(btn.textContent != '='){
-        //prob error
-        if(Number.isInteger(displayValue)){
+operatorButtons.forEach(btn => btn.addEventListener('click', () => {
+    if (btn.textContent != '=') {
+        operator = btn.textContent;
+        if (Number.isInteger(displayValue)) {
             number1 = Number.parseInt(displayValue);
         }
-        else{
+        else {
             number1 = Number.parseFloat(displayValue);
         }
-        displayText.textContent = `${displayValue} ${btn.textContent}`
+        displayText.textContent = `${displayValue} ${operator} `
         displayValue = 0;
+    } else if (operator == '') {
+        alert("Select a valid operator !");
+    } else {
+        if (Number.isInteger(displayValue)) {
+            number2 = Number.parseInt(displayValue);
+        }
+        else {
+            number2 = Number.parseFloat(displayValue);
+        }
+        let result = operate(operator, number1, number2)
+        displayText.textContent = `${number1} ${operator} ${number2} = ${result}`
+        displayValue = 0;
+        number1 = 0;
+        operator = '';
+        number2 = 0;
     }
-    else{
-        alert("Select a valid operator !")
-    }
-} ))
+}))
+
+clearBtn.addEventListener('click', () => {
+    displayText.textContent = '';
+    displayValue = 0;
+    number1 = 0;
+    operator = '';
+    number2 = 0;
+    //displayText.textContent = displayValue;
+})
+
