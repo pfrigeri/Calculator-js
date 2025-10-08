@@ -66,8 +66,28 @@ const appendNumber = (number) => {
 }
 
 const numberButtons = document.querySelectorAll('.numbers .buttons');
+const operatorButtons = document.querySelectorAll('.operators .buttons')
+
+//negative numbers use case
+//make the text start from the right and get pushed left as it's added
 
 numberButtons.forEach( btn => btn.addEventListener('click', () => {
     appendNumber(btn.textContent);
-    console.log(btn.textContent);
 }))
+
+operatorButtons.forEach( btn => btn.addEventListener('click', () => {
+    if(btn.textContent != '='){
+        //prob error
+        if(Number.isInteger(displayValue)){
+            number1 = Number.parseInt(displayValue);
+        }
+        else{
+            number1 = Number.parseFloat(displayValue);
+        }
+        displayText.textContent = `${displayValue} ${btn.textContent}`
+        displayValue = 0;
+    }
+    else{
+        alert("Select a valid operator !")
+    }
+} ))
