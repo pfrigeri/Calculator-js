@@ -19,6 +19,7 @@ const divide = (num1, num2) => {
     else if (num1 == 0 && num2 != 0) return 0;
     else if (num1 != 0 && num2 == 0) return Infinity;
 
+    //3 casas decimais
     return num1 / num2;
 }
 
@@ -35,8 +36,13 @@ const operate = (op, num1, num2) => {
             return subtract(num1, num2);
         case "x":
             return multiply(num1, num2);
-        case '/':
-            return divide(num1, num2);
+        case '÷':
+            if(Number.isInteger(divide(num1, num2))){
+                return divide(num1, num2);
+            } else {
+                return divide(num1, num2).toFixed(2);
+            }
+
         default:
             alert("Choose a valid operator !")
     }
