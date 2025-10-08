@@ -47,4 +47,27 @@ const operate = (operator, num1, num2) => {
     }
 }
 
-console.log(divide(0,0));
+//populate the display with the buttons
+
+const display = document.querySelector('.display')
+
+let displayText = document.querySelector('.display h1');
+let displayValue = 0;
+
+displayText.textContent = displayValue;
+
+const appendNumber = (number) => {
+    if(displayValue == '0'){
+        displayValue = number;
+    } else {
+        displayValue += number;
+    }
+    displayText.textContent = displayValue;
+}
+
+const numberButtons = document.querySelectorAll('.numbers .buttons');
+
+numberButtons.forEach( btn => btn.addEventListener('click', () => {
+    appendNumber(btn.textContent);
+    console.log(btn.textContent);
+}))
