@@ -1,36 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calculator</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
     <script src="script.js" defer></script>
-</head>
-<body>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jersey+10&family=Jersey+20&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <h1>Hello ! What we're calculating today ?</h1>
     <div id="calc-container">
-        <!-- Utilizar uma fonte especial no display -->
-        <div class="display">
-            <h1>Numbers: 10 x 10 = 100</h1>
+      <!-- Utilizar uma fonte especial no display -->
+      <div class="display">
+        <h1>Numbers: 10 x 10 = 100</h1>
+      </div>
+      <button class="buttons" id="clear">C</button>
+      <div id="btn-container">
+        <div class="numbers">
+          <button class="buttons">7</button> <button class="buttons">8</button>
+          <button class="buttons">9</button> <button class="buttons">4</button>
+          <button class="buttons">5</button> <button class="buttons">6</button>
+          <button class="buttons">1</button> <button class="buttons">2</button>
+          <button class="buttons">3</button>
+          <button class="buttons" id="zero">0</button>
+          <button class="buttons" id="dot">.</button>
         </div>
-        <button class="buttons" id="clear">C</button>
-        <div id="btn-container">
-            <div class="numbers">
-                    <button class="buttons">7</button> <button class="buttons">8</button>
-                    <button class="buttons">9</button> <button class="buttons">4</button>
-                    <button class="buttons">5</button> <button class="buttons">6</button>
-                    <button class="buttons">1</button> <button class="buttons">2</button>
-                    <button class="buttons">3</button> <button class="buttons" id="zero">0</button>
-                    <button class="buttons" id="dot">.</button>
-                </div>
-                <div class="operators">
-                    <button class="buttons">÷</button> <button class="buttons">x</button> 
-                    <button class="buttons">-</button> <button class="buttons">+</button>
-                    <button class="buttons" id="equal">=</button>
-                </div>
-            
+        <div class="operators">
+          <button class="buttons">÷</button> <button class="buttons">x</button>
+          <button class="buttons">-</button> <button class="buttons">+</button>
+          <button class="buttons" id="equal">=</button>
         </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>

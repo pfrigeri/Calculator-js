@@ -19,7 +19,6 @@ const divide = (num1, num2) => {
     else if (num1 == 0 && num2 != 0) return 0;
     else if (num1 != 0 && num2 == 0) return Infinity;
 
-    //3 casas decimais
     return num1 / num2;
 }
 
@@ -83,7 +82,13 @@ numberButtons.forEach(btn => btn.addEventListener('click', () => {
 }))
 
 operatorButtons.forEach(btn => btn.addEventListener('click', () => {
-    if (btn.textContent != '=') {
+    if(btn.textContent != '=' && operator != ''){
+        let result = operate(operator, number1, number2);
+        operator = btn.textContent;
+        number1 = result;
+        displayText.textContent = `${number1} ${operator} `
+    }
+    else if (btn.textContent != '=' && operator == '') {
         operator = btn.textContent;
         if (Number.isInteger(displayValue)) {
             number1 = Number.parseInt(displayValue);
@@ -105,7 +110,7 @@ operatorButtons.forEach(btn => btn.addEventListener('click', () => {
         let result = operate(operator, number1, number2)
         displayText.textContent = `${number1} ${operator} ${number2} = ${result}`
         displayValue = 0;
-        number1 = 0;
+        number1 = result;
         operator = '';
         number2 = 0;
     }
