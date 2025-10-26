@@ -42,6 +42,20 @@ const operate = (op, num1, num2) => {
     }
 }
 
+const evaluate = () => {
+    if (operator === null || number1 === null) {
+            return;
+        }
+        const number2 = Number(displayValue);
+        const result = operate(operator, number1, number2);
+        displayText.textContent = result;
+
+        displayValue = result.toString();
+        number1 = null;
+        operator = null;
+        shouldResetDisplay = true;
+        return;
+}
 const display = document.querySelector('.display')
 
 let displayText = document.querySelector('.display h1');
@@ -67,7 +81,7 @@ const appendNumber = (number) => {
 const numberButtons = document.querySelectorAll('.numbers .buttons');
 const operatorButtons = document.querySelectorAll('.operators .buttons')
 const clearBtn = document.querySelector('#clear')
-const backspaceButton = document.querySelector('#backspace');
+const backspaceBtn = document.querySelector('#backspace');
 
 numberButtons.forEach(btn => btn.addEventListener('click', () => {
     appendNumber(btn.textContent);
@@ -77,17 +91,7 @@ operatorButtons.forEach(btn => btn.addEventListener('click', () => {
    const clickedOperator = btn.textContent;
 
     if (clickedOperator === '=') {
-        if (operator === null || number1 === null) {
-            return;
-        }
-        const number2 = Number(displayValue);
-        const result = operate(operator, number1, number2);
-        displayText.textContent = result;
-
-        displayValue = result.toString();
-        number1 = null;
-        operator = null;
-        shouldResetDisplay = true;
+        evaluate();
         return;
     }
     // For operadors (+, -, etc.)
@@ -113,7 +117,7 @@ clearBtn.addEventListener('click', () => {
     
 })
 
-backspaceButton.addEventListener('click', () => {
+backspaceBtn.addEventListener('click', () => {
     if (shouldResetDisplay) return;
 
     if (displayValue.length > 1) {
@@ -124,4 +128,15 @@ backspaceButton.addEventListener('click', () => {
     }
 
     displayText.textContent = displayValue;
+});
+
+window.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        event.preventDefault(); 
+        evaluate();
+    }
+    if (event.key === 'Backspace'){
+        event.preventDefault();
+        backspaceBtn.click();
+    }
 });
