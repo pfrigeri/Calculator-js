@@ -67,6 +67,7 @@ const appendNumber = (number) => {
 const numberButtons = document.querySelectorAll('.numbers .buttons');
 const operatorButtons = document.querySelectorAll('.operators .buttons')
 const clearBtn = document.querySelector('#clear')
+const backspaceButton = document.querySelector('#backspace');
 
 numberButtons.forEach(btn => btn.addEventListener('click', () => {
     appendNumber(btn.textContent);
@@ -112,3 +113,15 @@ clearBtn.addEventListener('click', () => {
     
 })
 
+backspaceButton.addEventListener('click', () => {
+    if (shouldResetDisplay) return;
+
+    if (displayValue.length > 1) {
+        displayValue = displayValue.slice(0, -1);
+    } 
+    else {
+        displayValue = '0';
+    }
+
+    displayText.textContent = displayValue;
+});

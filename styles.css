@@ -68,9 +68,16 @@ body{
     flex: 2 1 auto;
 }
 
-#clear{
+.special{
+    display: flex;
+    justify-content: space-between;
+    gap: 150px;
+}
+
+#clear, #backspace{
     margin: 8px 0;
     align-self:flex-start;
-    flex: 3 1 10%;
+    flex: 1 1 10%;
     width: 150px;
+    height: 50px;
 }

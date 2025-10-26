@@ -6,7 +6,7 @@ Uma calculadora funcional construída com JavaScript puro, HTML e CSS, capaz de 
 
 Este projeto é o desafio final do módulo "Foundations" do [The Odin Project](https://www.theodinproject.com/), projetado para consolidar todo o conhecimento de lógica de programação e manipulação do DOM.
 
-**[➡️ Link para a versão ao vivo (em breve)](https://pfrigeri.github.io/Calculator-js/)**
+**[➡️ Link para a versão ao vivo](https://pfrigeri.github.io/Calculator-js/)**
 
 ---
 
