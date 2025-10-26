@@ -1,7 +1,5 @@
 # 🧮 Calculadora com JavaScript
 
-![Status](https://img.shields.io/badge/status-em%20desenvolvimento-yellow)
-
 Uma calculadora funcional construída com JavaScript puro, HTML e CSS, capaz de realizar operações aritméticas básicas com uma interface interativa.
 
 Este projeto é o desafio final do módulo "Foundations" do [The Odin Project](https://www.theodinproject.com/), projetado para consolidar todo o conhecimento de lógica de programação e manipulação do DOM.
@@ -16,12 +14,7 @@ Este projeto é o desafio final do módulo "Foundations" do [The Odin Project](h
 * **Display Interativo:** A tela é populada dinamicamente com os números e operadores clicados pelo usuário.
 * **Encadeamento de Operações:** Permite realizar cálculos sequenciais (ex: `10 + 5 - 3`).
 * **Botão 'Clear':** Funcionalidade para resetar completamente o estado da calculadora.
-
-## 🚧 Próximos Passos (To-Do)
-
-* [ ] Implementar suporte para teclado.
-* [ ] Adicionar funcionalidade de 'Backspace' para corrigir o último dígito.
-* [ ] Melhorar o tratamento de números decimais.
+* **Botão 'Backspace':** Funcionalidade para deletar o último digito.
 
 ## 🧠 Aprendizados Principais
 
