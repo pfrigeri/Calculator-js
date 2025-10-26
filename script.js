@@ -22,11 +22,6 @@ const divide = (num1, num2) => {
     return num1 / num2;
 }
 
-//global variables
-let number1 = 0;
-let operator = '';
-let number2 = 0;
-
 const operate = (op, num1, num2) => {
     switch (op) {
         case '+':
@@ -47,81 +42,73 @@ const operate = (op, num1, num2) => {
     }
 }
 
-//populate the display with the buttons
-
 const display = document.querySelector('.display')
 
 let displayText = document.querySelector('.display h1');
-let displayValue = 0;
+
+//global variables
+let displayValue = '0';
+let number1 = null;
+let operator = null;
+let number2 = null;
 
 displayText.textContent = displayValue;
 
 const appendNumber = (number) => {
-    if (displayValue == '0') {
+    if (displayValue === '0' || shouldResetDisplay) {
         displayValue = number;
+        shouldResetDisplay = false;
     } else {
         displayValue += number;
     }
-
-    if (operator != '') {
-        displayText.textContent = `${number1} ${operator} ${displayValue}`
-    } else {
-        displayText.textContent = displayValue;
-    }
+    displayText.textContent = displayValue;
 }
 
 const numberButtons = document.querySelectorAll('.numbers .buttons');
 const operatorButtons = document.querySelectorAll('.operators .buttons')
 const clearBtn = document.querySelector('#clear')
 
-//negative numbers use case
-//make the text start from the right and get pushed left as it's added
-
 numberButtons.forEach(btn => btn.addEventListener('click', () => {
     appendNumber(btn.textContent);
 }))
 
 operatorButtons.forEach(btn => btn.addEventListener('click', () => {
-    if(btn.textContent != '=' && operator != ''){
-        let result = operate(operator, number1, number2);
-        operator = btn.textContent;
-        number1 = result;
-        displayText.textContent = `${number1} ${operator} `
+   const clickedOperator = btn.textContent;
+
+    if (clickedOperator === '=') {
+        if (operator === null || number1 === null) {
+            return;
+        }
+        const number2 = Number(displayValue);
+        const result = operate(operator, number1, number2);
+        displayText.textContent = result;
+
+        displayValue = result.toString();
+        number1 = null;
+        operator = null;
+        shouldResetDisplay = true;
+        return;
     }
-    else if (btn.textContent != '=' && operator == '') {
-        operator = btn.textContent;
-        if (Number.isInteger(displayValue)) {
-            number1 = Number.parseInt(displayValue);
+    // For operadors (+, -, etc.)
+    else{
+        if (operator !== null) {
+            const number2 = Number(displayValue);
+            number1 = operate(operator, number1, number2);
+        } else {
+            number1 = Number(displayValue);
         }
-        else {
-            number1 = Number.parseFloat(displayValue);
-        }
-        displayText.textContent = `${displayValue} ${operator} `
-        displayValue = 0;
-    } else if (operator == '') {
-        alert("Select a valid operator !");
-    } else {
-        if (Number.isInteger(displayValue)) {
-            number2 = Number.parseInt(displayValue);
-        }
-        else {
-            number2 = Number.parseFloat(displayValue);
-        }
-        let result = operate(operator, number1, number2)
-        displayText.textContent = `${number1} ${operator} ${number2} = ${result}`
-        displayValue = 0;
-        number1 = result;
-        operator = '';
-        number2 = 0;
+        operator = clickedOperator;
+        shouldResetDisplay = true; 
+        displayText.textContent = `${number1} ${operator}`;
     }
 }))
 
 clearBtn.addEventListener('click', () => {
-    displayText.textContent = '';
-    displayValue = 0;
-    number1 = 0;
-    operator = '';
-    number2 = 0;
-    //displayText.textContent = displayValue;
+    displayValue = '0';
+    number1 = null;
+    operator = null;
+    shouldResetDisplay = false;
+    displayText.textContent = displayValue;
+    
 })
 
